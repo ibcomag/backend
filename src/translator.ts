@@ -1,5 +1,6 @@
 export default {
     "Pagina": "page",
     "Nome": "name",
-    "Autor": "auth"
+    "Autor": "auth",
+    "Sinopse": "synopsis"
 }
