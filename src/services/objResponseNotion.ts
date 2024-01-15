@@ -8,10 +8,9 @@ export function getValues<T>(properties) {
 
         const { type } = obj;
         const valueList = obj[type];
-        console.log(valueList);
         const value =
             typeof valueList === "object" && valueList.length !== 0
-                ? valueList[0].plain_text
+                ? valueList[0].plain_text || valueList[0].file.url
                 : valueList;
 
         const keyTranslator = translator[key] || key;

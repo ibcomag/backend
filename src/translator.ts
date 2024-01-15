@@ -2,5 +2,6 @@ export default {
     "Pagina": "page",
     "Nome": "name",
     "Autor": "auth",
-    "Sinopse": "synopsis"
+    "Sinopse": "synopsis",
+    "Imagem": "image"
 }
