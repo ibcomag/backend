@@ -1,5 +1,5 @@
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import { getIdInPage, getValues } from "../../services/objResponseNotion";
+import { getValues } from "../../services/objResponseNotion";
 import notion from "../main";
 import { BooksType } from "../../@types/books";
 

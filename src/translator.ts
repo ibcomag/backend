@@ -3,5 +3,7 @@ export default {
     "Nome": "name",
     "Autor": "auth",
     "Sinopse": "synopsis",
-    "Imagem": "image"
+    "Imagem": "image",
+    "Cifra": "sheet_music",
+    "Letra": "letter",
 }

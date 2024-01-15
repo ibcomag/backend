@@ -13,7 +13,7 @@ export function getValues<T>(properties) {
                 ? valueList[0].plain_text || valueList[0].file.url
                 : valueList;
 
-        const keyTranslator = translator[key] || key;
+        const keyTranslator = translator[key] || key.toLowerCase();
         response[keyTranslator] = value;
     }
     return response as T;
