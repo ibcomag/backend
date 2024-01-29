@@ -1,6 +1,6 @@
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { convertViewUrlForDownload } from "../../services/common";
 import { getValues } from "../../services/objResponseNotion";
-import { getFileforDownload } from "../../services/google";
 import { MusicsType } from "../../@types/musics";
 import notion from "../main";
 
@@ -14,8 +14,8 @@ export const getAllMusics = async () => {
     const results = await Promise.all(
         response.results.map(async (obj: PageObjectResponse) => {
             const newObj: MusicsType = getValues(obj.properties);
-            const letter = await getFileforDownload(newObj.letter);
-            const sheet_music = await getFileforDownload(newObj.sheet_music);
+            const letter = await convertViewUrlForDownload(newObj.letter);
+            const sheet_music = await convertViewUrlForDownload(newObj.sheet_music);
             return { ...newObj, id: obj.id, letter, sheet_music };
         })
     );
@@ -28,7 +28,7 @@ export const getMusicsById = async ({ id }: Partial<MusicsType>) => {
         page_id: id,
     });
     const dataResponse: MusicsType = getValues(response.properties);
-    const letter = await getFileforDownload(dataResponse.letter);
-    const sheet_music = await getFileforDownload(dataResponse.sheet_music);
+    const letter = await convertViewUrlForDownload(dataResponse.letter);
+    const sheet_music = await convertViewUrlForDownload(dataResponse.sheet_music);
     return { ...dataResponse, letter, sheet_music };
 };
