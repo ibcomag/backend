@@ -22,6 +22,6 @@ export function getValues<T>(properties) {
 export function getIdInPage(obj) {
     const page = obj.page;
     const idPage = page.split("-").at(-1);
-    const id = formatUUID(idPage);
+    const id = formatUUID(idPage.replace(/\?(.*)/, ""));
     return id;
 }
