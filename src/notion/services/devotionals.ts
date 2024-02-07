@@ -11,7 +11,7 @@ export const getAllDevotionals = async () => {
     });
     const results = response.results.map((obj: PageObjectResponse) => {
         const newObj: DevotionalsType = getValues(obj.properties);
-        return { ...newObj, id: obj.id };
+        return { ...newObj, id: obj.id, date: obj.created_time };
     });
     return results;
 };
@@ -27,6 +27,19 @@ export const getDevotionalById = async ({ id }: Partial<DevotionalsType>) => {
     });
     return {
         ...dataResponse,
+        content: responsePage.results,
+    };
+};
+
+export const getAllArticles = async () => {
+    const AllDevotionals = await getAllDevotionals();
+    const response = AllDevotionals.find(({ id }) => id === id);
+    const idPageContent = getIdInPage(response);
+    const responsePage = await notion.blocks.children.list({
+        block_id: idPageContent,
+    });
+    return {
+        ...response,
         content: responsePage.results,
     };
 };

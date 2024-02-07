@@ -17,12 +17,8 @@ export const getAllArticles = async () => {
 };
 
 export const getArticlesById = async ({ id }: Partial<ArticlesType>) => {
-    // const response: Partial<PageObjectResponse> = await notion.pages.retrieve({
-    //     page_id: id,
-    // });
     const allArticles = await getAllArticles()
     const response = allArticles.find(({ id }) => id === id)
-    // const dataResponse: ArticlesType = getValues(response.properties);
     const idPageContent = getIdInPage(response);
     const responsePage = await notion.blocks.children.list({
         block_id: idPageContent,
