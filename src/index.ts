@@ -13,5 +13,7 @@ app.use(cors());
 app.use("/api/v1", router);
 app.use(handleError);
 
-const port = 3000;
-app.listen(port, () => console.log(`Aplication running in port ${port}`));
+const port = Number(process.env.PORT) || 3000;
+app.listen(port, "0.0.0.0", () =>
+    console.log(`Aplication running in port ${port}`)
+);
