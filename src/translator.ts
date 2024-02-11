@@ -6,4 +6,5 @@ export default {
     "Imagem": "image",
     "Cifra": "sheet_music",
     "Letra": "letter",
+    "Vídeo": "video"
 }
