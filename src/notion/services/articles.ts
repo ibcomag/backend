@@ -17,14 +17,18 @@ export const getAllArticles = async () => {
 };
 
 export const getArticlesById = async ({ id }: Partial<ArticlesType>) => {
-    const allArticles = await getAllArticles()
-    const response = allArticles.find(({ id }) => id === id)
-    const idPageContent = getIdInPage(response);
+    const response: Partial<PageObjectResponse> = await notion.pages.retrieve({
+        page_id: id,
+    });
+    const dataResponse: ArticlesType = getValues(response.properties);
+    const idPageContent = getIdInPage(dataResponse);
     const responsePage = await notion.blocks.children.list({
         block_id: idPageContent,
     });
     return {
-        ...response,
+        id,
+        ...dataResponse,
+        date: response.created_time,
         content: responsePage.results,
     };
 };

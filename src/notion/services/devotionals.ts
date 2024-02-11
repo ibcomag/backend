@@ -26,20 +26,9 @@ export const getDevotionalById = async ({ id }: Partial<DevotionalsType>) => {
         block_id: idPageContent,
     });
     return {
+        id,
         ...dataResponse,
-        content: responsePage.results,
-    };
-};
-
-export const getAllArticles = async () => {
-    const AllDevotionals = await getAllDevotionals();
-    const response = AllDevotionals.find(({ id }) => id === id);
-    const idPageContent = getIdInPage(response);
-    const responsePage = await notion.blocks.children.list({
-        block_id: idPageContent,
-    });
-    return {
-        ...response,
+        date: response.created_time,
         content: responsePage.results,
     };
 };
