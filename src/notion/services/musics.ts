@@ -30,5 +30,5 @@ export const getMusicsById = async ({ id }: Partial<MusicsType>) => {
     const dataResponse: MusicsType = getValues(response.properties);
     const letter = await convertViewUrlForDownload(dataResponse.letter);
     const sheet_music = await convertViewUrlForDownload(dataResponse.sheet_music);
-    return { ...dataResponse, letter, sheet_music };
+    return { ...dataResponse, letter, sheet_music, id };
 };
